@@ -14,7 +14,7 @@ defmodule Swampland.Sections.Section do
     field :meeting_times, :id
 
     has_many :instructors, Instructors
-    has_many :meeting_times, MeetingTimes
+    has_many :meet_times, MeetingTimes
     timestamps()
   end
 
