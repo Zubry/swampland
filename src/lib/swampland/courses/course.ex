@@ -9,6 +9,8 @@ defmodule Swampland.Courses.Course do
     field :name, :string
     field :prerequisites, :string
 
+    has_many :sections, Swampland.Sections.Section
+
     timestamps()
   end
 

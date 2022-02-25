@@ -10,11 +10,12 @@ defmodule Swampland.Sections.Section do
     field :display, :string
     field :grad_basis, :string
     field :number, :string
-    field :instructor_id, :id
-    field :meeting_times, :id
 
-    has_many :instructors, Instructors
-    has_many :meet_times, MeetingTimes
+    has_many :instructors, Swampland.Instructors.Instructor
+    has_many :meeting_times, Swampland.MeetingTimes.MeetingTime
+
+    belongs_to :course, Swampland.Courses.Course
+
     timestamps()
   end
 
