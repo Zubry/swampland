@@ -7,6 +7,7 @@ defmodule Swampland.Application do
 
   def start(_type, _args) do
     children = [
+      Swampland.OneUf.child_spec,
       # Start the Ecto repository
       Swampland.Repo,
       # Start the Telemetry supervisor
