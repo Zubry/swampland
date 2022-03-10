@@ -11,8 +11,8 @@ defmodule Swampland.Sections.Section do
     field :grad_basis, :string
     field :number, :string
 
-    has_many :instructors, Swampland.Instructors.Instructor
-    has_many :meeting_times, Swampland.MeetingTimes.MeetingTime
+    many_to_many :instructors, Swampland.Instructors.Instructor, join_through: "section_instructors"
+    many_to_many :meeting_times, Swampland.MeetingTimes.MeetingTime, join_through: "section_meeting_times"
 
     belongs_to :course, Swampland.Courses.Course
 

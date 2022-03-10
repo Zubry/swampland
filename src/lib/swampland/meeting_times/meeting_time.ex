@@ -9,7 +9,7 @@ defmodule Swampland.MeetingTimes.MeetingTime do
     field :end, :string
     field :room, :string
 
-    belongs_to :section, Swampland.Sections.Section
+    many_to_many :section, Swampland.Sections.Section, join_through: "section_meeting_times"
 
     timestamps()
   end

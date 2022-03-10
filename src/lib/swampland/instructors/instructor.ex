@@ -5,7 +5,7 @@ defmodule Swampland.Instructors.Instructor do
   schema "instructors" do
     field :name, :string
 
-    belongs_to :section, Swampland.Sections.Section
+    many_to_many :section, Swampland.Sections.Section, join_through: "section_instructors"
 
     timestamps()
   end

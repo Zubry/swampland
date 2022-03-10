@@ -3,6 +3,8 @@ defmodule Swampland.OneUf do
   The ONE.UF context
   """
   alias Finch.Response
+  alias Swampland.Repo
+  alias Ecto.Multi
 
   def child_spec do
     {Finch,
@@ -19,14 +21,14 @@ defmodule Swampland.OneUf do
          {:ok, %Response{ status: 200, body: body }} <- Finch.request(request, __MODULE__),
          [%{ "TOTALROWS" => 1, "RETRIEVEDROWS" => 1, "COURSES" => courses }] <- Jason.decode!(body),
          course <- hd(courses) do
-      {:ok, %{
+      {:ok, %Swampland.Courses.Course{
         code: course["code"],
         course_id: course["courseId"],
         description: course["description"],
         prerequisites: course["prerequisites"],
         name: course["name"],
         sections: for section <- course["sections"] do
-          %{
+          %Swampland.Sections.Section{
             acad_career: section["acadCareer"],
             class_number: section["classNumber"],
             credits: section["credits"],
@@ -35,12 +37,12 @@ defmodule Swampland.OneUf do
             grad_basis: section["gradBasis"],
             number: "#{section["number"]}",
             instructors: for instructor <- section["instructors"] do
-              %{
+              %Swampland.Instructors.Instructor{
                 name: instructor["name"]
               }
             end,
             meeting_times: for meet_time <- section["meetTimes"] do
-              %{
+              %Swampland.MeetingTimes.MeetingTime{
                 beginning: meet_time["meetTimeBegin"],
                 end: meet_time["meetTimeEnd"],
                 building: meet_time["meetBuilding"],
@@ -57,28 +59,33 @@ defmodule Swampland.OneUf do
   end
 
   def create_course(course_code, term) do
-    with {:ok, course} <- get_course(course_code, term) do
-      {:ok, course_repo} = Swampland.Courses.create_course(course)
+    {:ok, course} = get_course(course_code, term)
 
-      for section <- course.sections do
-        section_repo = course_repo
-          |> Ecto.build_assoc(:sections, section)
-          |> Swampland.Repo.insert!
+    {sections, course} = Map.pop(course, :sections)
 
-        for instructor <- section.instructors do
-          section_repo
-            |> Ecto.build_assoc(:instructors, instructor)
-            |> Swampland.Repo.insert!
-        end
+    course = Repo.insert!(Map.put(course, :sections, []))
 
-        for meeting_time <- section.meeting_times do
-          section_repo
-            |> Ecto.build_assoc(:meeting_times, meeting_time)
-            |> Swampland.Repo.insert!
+    for section <- sections do
+      {instructors, section} = Map.pop(section, :instructors)
+
+      section = Ecto.build_assoc(course, :sections, Map.put(section, :instructors, []))
+
+      section = Repo.insert!(section)
+
+      instructors = for instructor <- instructors do
+        case Repo.get_by(Swampland.Instructors.Instructor, name: instructor.name) do
+          nil ->
+            Repo.insert!(instructor)
+          instructor ->
+            instructor
         end
       end
-      # Swampland.Courses.create_course(course)
+
+      Ecto.Changeset.change(section)
+      |> Ecto.Changeset.put_assoc(:instructors, instructors)
+      |> Repo.update!
     end
   end
-  # Swampland.Courses.get_course!(8) |> Swampland.Repo.preload([:sections])
+  # Swampland.OneUf.create_course("cop3503", "2188")
+  # Swampland.Courses.get_course!(1) |> Swampland.Repo.preload([sections: [:instructors, :meeting_times]])
 end
