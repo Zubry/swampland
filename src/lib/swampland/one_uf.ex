@@ -85,7 +85,9 @@ defmodule Swampland.OneUf do
       |> Ecto.Changeset.put_assoc(:instructors, instructors)
       |> Repo.update!
     end
+
+    {:ok, course}
   end
   # Swampland.OneUf.create_course("cop3503", "2188")
-  # Swampland.Courses.get_course!(1) |> Swampland.Repo.preload([sections: [:instructors, :meeting_times]])
+  # Swampland.Courses.get_course!(2) |> Swampland.Repo.preload([sections: [:instructors])
 end
