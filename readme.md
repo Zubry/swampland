@@ -28,3 +28,8 @@ phx mix ecto.migrate
 
 Provided that you built the containers and set up the alias above, you can start the server by running `phx mix phx.server`, or `phx iex -S mix phx.server` if you want an interactive shell
 
+# Issues
+
+* Store active term(s?) outside of producer so that it can be started and stopped more easily
+* Store term alongside course in the database
+* Handle duplicate courses

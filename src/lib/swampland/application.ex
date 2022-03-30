@@ -7,7 +7,6 @@ defmodule Swampland.Application do
 
   def start(_type, _args) do
     children = [
-      Swampland.OneUf.child_spec,
       # Start the Ecto repository
       Swampland.Repo,
       # Start the Telemetry supervisor
@@ -15,7 +14,8 @@ defmodule Swampland.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: Swampland.PubSub},
       # Start the Endpoint (http/https)
-      SwamplandWeb.Endpoint
+      SwamplandWeb.Endpoint,
+      Swampland.OneUf.Supervisor
       # Start a worker by calling: Swampland.Worker.start_link(arg)
       # {Swampland.Worker, arg}
     ]
