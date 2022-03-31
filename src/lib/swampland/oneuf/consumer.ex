@@ -11,7 +11,8 @@ defmodule Swampland.OneUf.Consumer do
   end
 
   def init(:ok) do
-    {:consumer, :the_state_does_not_matter, subscribe_to: [{Swampland.OneUf.Producer, min_demand: @min_demand, max_demand: @max_demand}]}
+    {:consumer, :the_state_does_not_matter,
+     subscribe_to: [{Swampland.OneUf.Producer, min_demand: @min_demand, max_demand: @max_demand}]}
   end
 
   def handle_events(events, _from, state) do

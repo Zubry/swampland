@@ -6,8 +6,20 @@ defmodule Swampland.CoursesTest do
   describe "courses" do
     alias Swampland.Courses.Course
 
-    @valid_attrs %{code: "some code", course_id: "some course_id", description: "some description", name: "some name", prerequisites: "some prerequisites"}
-    @update_attrs %{code: "some updated code", course_id: "some updated course_id", description: "some updated description", name: "some updated name", prerequisites: "some updated prerequisites"}
+    @valid_attrs %{
+      code: "some code",
+      course_id: "some course_id",
+      description: "some description",
+      name: "some name",
+      prerequisites: "some prerequisites"
+    }
+    @update_attrs %{
+      code: "some updated code",
+      course_id: "some updated course_id",
+      description: "some updated description",
+      name: "some updated name",
+      prerequisites: "some updated prerequisites"
+    }
     @invalid_attrs %{code: nil, course_id: nil, description: nil, name: nil, prerequisites: nil}
 
     def course_fixture(attrs \\ %{}) do

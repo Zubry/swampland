@@ -40,13 +40,19 @@ defmodule Swampland.InstructorsTest do
 
     test "update_instructor/2 with valid data updates the instructor" do
       instructor = instructor_fixture()
-      assert {:ok, %Instructor{} = instructor} = Instructors.update_instructor(instructor, @update_attrs)
+
+      assert {:ok, %Instructor{} = instructor} =
+               Instructors.update_instructor(instructor, @update_attrs)
+
       assert instructor.name == "some updated name"
     end
 
     test "update_instructor/2 with invalid data returns error changeset" do
       instructor = instructor_fixture()
-      assert {:error, %Ecto.Changeset{}} = Instructors.update_instructor(instructor, @invalid_attrs)
+
+      assert {:error, %Ecto.Changeset{}} =
+               Instructors.update_instructor(instructor, @invalid_attrs)
+
       assert instructor == Instructors.get_instructor!(instructor.id)
     end
 

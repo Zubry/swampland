@@ -11,11 +11,13 @@ defmodule SwamplandWeb.CourseView do
   end
 
   def render("course.json", %{course: course}) do
-    %{id: course.id,
+    %{
+      id: course.id,
       code: course.code,
       course_id: course.course_id,
       name: course.name,
       description: course.description,
-      prerequisites: course.prerequisites}
+      prerequisites: course.prerequisites
+    }
   end
 end

@@ -11,6 +11,5 @@ defmodule Swampland.Repo.Migrations.CreateMeetingTimes do
 
       timestamps()
     end
-
   end
 end

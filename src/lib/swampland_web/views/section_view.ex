@@ -11,13 +11,15 @@ defmodule SwamplandWeb.SectionView do
   end
 
   def render("section.json", %{section: section}) do
-    %{id: section.id,
+    %{
+      id: section.id,
       number: section.number,
       class_number: section.class_number,
       grad_basis: section.grad_basis,
       acad_career: section.acad_career,
       display: section.display,
       credits: section.credits,
-      dept_name: section.dept_name}
+      dept_name: section.dept_name
+    }
   end
 end

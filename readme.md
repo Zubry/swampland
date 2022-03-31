@@ -30,6 +30,5 @@ Provided that you built the containers and set up the alias above, you can start
 
 # Issues
 
-* Store active term(s?) outside of producer so that it can be started and stopped more easily
-* Store term alongside course in the database
+* .5 credit courses aren't handled
 * Handle duplicate courses

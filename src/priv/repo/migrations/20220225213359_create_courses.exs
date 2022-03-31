@@ -11,6 +11,5 @@ defmodule Swampland.Repo.Migrations.CreateCourses do
 
       timestamps()
     end
-
   end
 end

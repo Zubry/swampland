@@ -6,8 +6,20 @@ defmodule Swampland.MeetingTimesTest do
   describe "meeting_times" do
     alias Swampland.MeetingTimes.MeetingTime
 
-    @valid_attrs %{beginning: "some beginning", building: "some building", day: "some day", end: "some end", room: "some room"}
-    @update_attrs %{beginning: "some updated beginning", building: "some updated building", day: "some updated day", end: "some updated end", room: "some updated room"}
+    @valid_attrs %{
+      beginning: "some beginning",
+      building: "some building",
+      day: "some day",
+      end: "some end",
+      room: "some room"
+    }
+    @update_attrs %{
+      beginning: "some updated beginning",
+      building: "some updated building",
+      day: "some updated day",
+      end: "some updated end",
+      room: "some updated room"
+    }
     @invalid_attrs %{beginning: nil, building: nil, day: nil, end: nil, room: nil}
 
     def meeting_time_fixture(attrs \\ %{}) do
@@ -44,7 +56,10 @@ defmodule Swampland.MeetingTimesTest do
 
     test "update_meeting_time/2 with valid data updates the meeting_time" do
       meeting_time = meeting_time_fixture()
-      assert {:ok, %MeetingTime{} = meeting_time} = MeetingTimes.update_meeting_time(meeting_time, @update_attrs)
+
+      assert {:ok, %MeetingTime{} = meeting_time} =
+               MeetingTimes.update_meeting_time(meeting_time, @update_attrs)
+
       assert meeting_time.beginning == "some updated beginning"
       assert meeting_time.building == "some updated building"
       assert meeting_time.day == "some updated day"
@@ -54,7 +69,10 @@ defmodule Swampland.MeetingTimesTest do
 
     test "update_meeting_time/2 with invalid data returns error changeset" do
       meeting_time = meeting_time_fixture()
-      assert {:error, %Ecto.Changeset{}} = MeetingTimes.update_meeting_time(meeting_time, @invalid_attrs)
+
+      assert {:error, %Ecto.Changeset{}} =
+               MeetingTimes.update_meeting_time(meeting_time, @invalid_attrs)
+
       assert meeting_time == MeetingTimes.get_meeting_time!(meeting_time.id)
     end
 

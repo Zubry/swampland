@@ -46,7 +46,7 @@ defmodule Swampland.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:finch, "~> 0.10"},
-      {:gen_stage, "~> 1.0"},
+      {:gen_stage, "~> 1.0"}
     ]
   end
 

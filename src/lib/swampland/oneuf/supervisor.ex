@@ -9,14 +9,14 @@ defmodule Swampland.OneUf.Supervisor do
   @impl true
   def init(_init_arg) do
     children = [
-      Swampland.OneUf.Course.child_spec,
+      Swampland.OneUf.Course.child_spec(),
       Swampland.OneUf.Producer,
       Supervisor.child_spec(Swampland.OneUf.Consumer, id: :consumer_1),
       Supervisor.child_spec(Swampland.OneUf.Consumer, id: :consumer_2),
       Supervisor.child_spec(Swampland.OneUf.Consumer, id: :consumer_3),
       Supervisor.child_spec(Swampland.OneUf.Consumer, id: :consumer_4),
       Supervisor.child_spec(Swampland.OneUf.Consumer, id: :consumer_5),
-      Supervisor.child_spec(Swampland.OneUf.Consumer, id: :consumer_6),
+      Supervisor.child_spec(Swampland.OneUf.Consumer, id: :consumer_6)
     ]
 
     Supervisor.init(children, strategy: :one_for_one)

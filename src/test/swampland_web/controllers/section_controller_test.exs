@@ -22,7 +22,15 @@ defmodule SwamplandWeb.SectionControllerTest do
     grad_basis: "some updated grad_basis",
     number: "some updated number"
   }
-  @invalid_attrs %{acad_career: nil, class_number: nil, credits: nil, dept_name: nil, display: nil, grad_basis: nil, number: nil}
+  @invalid_attrs %{
+    acad_career: nil,
+    class_number: nil,
+    credits: nil,
+    dept_name: nil,
+    display: nil,
+    grad_basis: nil,
+    number: nil
+  }
 
   def fixture(:section) do
     {:ok, section} = Sections.create_section(@create_attrs)

@@ -7,6 +7,5 @@ defmodule Swampland.Repo.Migrations.CreateInstructors do
 
       timestamps()
     end
-
   end
 end

@@ -13,7 +13,8 @@ defmodule Swampland.Sections.Section do
 
     embeds_many :meeting_times, Swampland.MeetingTimes.MeetingTime
 
-    many_to_many :instructors, Swampland.Instructors.Instructor, join_through: "section_instructors"
+    many_to_many :instructors, Swampland.Instructors.Instructor,
+      join_through: "section_instructors"
 
     belongs_to :course, Swampland.Courses.Course
 
@@ -23,7 +24,25 @@ defmodule Swampland.Sections.Section do
   @doc false
   def changeset(section, attrs) do
     section
-    |> cast(attrs, [:number, :class_number, :grad_basis, :acad_career, :display, :credits, :dept_name, :meeting_times])
-    |> validate_required([:number, :class_number, :grad_basis, :acad_career, :display, :credits, :dept_name, :meeting_times])
+    |> cast(attrs, [
+      :number,
+      :class_number,
+      :grad_basis,
+      :acad_career,
+      :display,
+      :credits,
+      :dept_name,
+      :meeting_times
+    ])
+    |> validate_required([
+      :number,
+      :class_number,
+      :grad_basis,
+      :acad_career,
+      :display,
+      :credits,
+      :dept_name,
+      :meeting_times
+    ])
   end
 end

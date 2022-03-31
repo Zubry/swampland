@@ -6,9 +6,33 @@ defmodule Swampland.SectionsTest do
   describe "sections" do
     alias Swampland.Sections.Section
 
-    @valid_attrs %{acad_career: "some acad_career", class_number: 42, credits: 42, dept_name: "some dept_name", display: "some display", grad_basis: "some grad_basis", number: "some number"}
-    @update_attrs %{acad_career: "some updated acad_career", class_number: 43, credits: 43, dept_name: "some updated dept_name", display: "some updated display", grad_basis: "some updated grad_basis", number: "some updated number"}
-    @invalid_attrs %{acad_career: nil, class_number: nil, credits: nil, dept_name: nil, display: nil, grad_basis: nil, number: nil}
+    @valid_attrs %{
+      acad_career: "some acad_career",
+      class_number: 42,
+      credits: 42,
+      dept_name: "some dept_name",
+      display: "some display",
+      grad_basis: "some grad_basis",
+      number: "some number"
+    }
+    @update_attrs %{
+      acad_career: "some updated acad_career",
+      class_number: 43,
+      credits: 43,
+      dept_name: "some updated dept_name",
+      display: "some updated display",
+      grad_basis: "some updated grad_basis",
+      number: "some updated number"
+    }
+    @invalid_attrs %{
+      acad_career: nil,
+      class_number: nil,
+      credits: nil,
+      dept_name: nil,
+      display: nil,
+      grad_basis: nil,
+      number: nil
+    }
 
     def section_fixture(attrs \\ %{}) do
       {:ok, section} =
