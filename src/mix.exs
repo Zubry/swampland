@@ -20,7 +20,7 @@ defmodule Swampland.MixProject do
   def application do
     [
       mod: {Swampland.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :os_mon]
     ]
   end
 
@@ -46,7 +46,9 @@ defmodule Swampland.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:finch, "~> 0.10"},
-      {:gen_stage, "~> 1.0"}
+      {:gen_stage, "~> 1.0"},
+      {:absinthe, "~> 1.6"},
+      {:absinthe_plug, "~> 1.5"}
     ]
   end
 

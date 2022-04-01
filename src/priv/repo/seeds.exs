@@ -11,5 +11,5 @@
 # and so on) as they will fail if something goes wrong.
 
 Swampland.Repo.insert!(%Swampland.Terms.Term{code: "2228", semester: "Fall", year: "2022"})
-Swampland.Repo.insert!(%Swampland.Terms.Term{code: "2225", semester: "Fall", year: "2022"})
+Swampland.Repo.insert!(%Swampland.Terms.Term{code: "2225", semester: "Summer", year: "2022"})
 Swampland.Repo.insert!(%Swampland.Terms.Term{code: "2221", semester: "Spring", year: "2022"})

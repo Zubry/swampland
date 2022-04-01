@@ -64,7 +64,7 @@ defmodule Swampland.OneUf.Course do
                   end: meet_time["meetTimeEnd"],
                   building: meet_time["meetBuilding"],
                   day: meet_time["meetDays"] |> Enum.join("|"),
-                  room: meet_time["meetRoom"]
+                  room: "#{meet_time["meetRoom"]}"
                 }
               end
           }

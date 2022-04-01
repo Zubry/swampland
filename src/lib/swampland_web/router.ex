@@ -13,10 +13,10 @@ defmodule SwamplandWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", SwamplandWeb do
-    pipe_through :browser
+  scope "/" do
+    pipe_through :api
 
-    get "/", PageController, :index
+    forward "/graphiql", Absinthe.Plug.GraphiQL, schema: SwamplandWeb.Schema, interface: :simple, context: %{ pubsub: SwamplandWeb.Endpoint }
   end
 
   # Other scopes may use custom stacks.
